@@ -23,8 +23,17 @@ export class HashMap {
     if (!this.array[index]) {
       this.array[index] = [];
     }
+
     this.array[index].push([key, value]);
 
-    return this.array;
+    return this;
+  }
+
+  has(key) {
+    const index = this.hash(key);
+    const existingKey = this.array[index];
+
+    if (!existingKey) return false;
+    return true;
   }
 }
