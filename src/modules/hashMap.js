@@ -13,7 +13,6 @@ export class HashMap {
       hashCode = primeNumber * hashCode + key.charCodeAt(i);
       hashCode = hashCode % this.capacity;
     }
-    console.log(this.array);
     return hashCode;
   }
 
@@ -23,7 +22,6 @@ export class HashMap {
     if (!this.array[index]) {
       this.array[index] = [];
     }
-
     this.array[index].push([key, value]);
 
     return this;
@@ -31,9 +29,15 @@ export class HashMap {
 
   has(key) {
     const index = this.hash(key);
-    const existingKey = this.array[index];
+    const existingKeys = this.array[index];
 
-    if (!existingKey) return false;
+    if (existingKeys) {
+      for (const entity of existingKeys) {
+        if (entity[0] !== key) {
+          return false;
+        }
+      }
+    }
     return true;
   }
 }

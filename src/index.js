@@ -3,13 +3,11 @@ import { HashMap } from './modules/hashMap';
 
 const hashMap = new HashMap(0.8, 16);
 
-console.log(hashMap.hash('Stephane'));
-console.log(hashMap.hash('Luna'));
-console.log(hashMap.set('Stephane', 'Fedele'));
-console.log(hashMap.set('Alice', 'Thiel'));
-console.log(hashMap.set('Luna', 'Tralala'));
+hashMap.set('Alice', 'Thiel');
+hashMap.set('Stephane', 'Fedele');
+hashMap.set('Luna', 'Tralala');
 
-console.log(hashMap.has('Lea'));
-console.log(hashMap.has('Stephane'));
-console.log(hashMap.has('Luna'));
-console.log(hashMap.has('Marion'));
+console.log(hashMap);
+console.log(hashMap.has('Alice'));
+console.log(hashMap.has('Lina'));
+console.log(hashMap.hash('Lina'));
