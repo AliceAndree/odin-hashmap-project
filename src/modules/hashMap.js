@@ -25,6 +25,8 @@ export class HashMap {
 
     if (!this.has(key)) {
       this.array[index].push([key, value]);
+    } else {
+      this.replace(key, value);
     }
 
     return this;
@@ -41,5 +43,14 @@ export class HashMap {
       }
     }
     return false;
+  }
+
+  replace(key, value) {
+    const index = this.hash(key);
+    const existingKeys = this.array[index];
+
+    for (const entity of existingKeys) {
+      if (entity[0] === key) entity[1] = value;
+    }
   }
 }
