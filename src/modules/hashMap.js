@@ -22,7 +22,10 @@ export class HashMap {
     if (!this.array[index]) {
       this.array[index] = [];
     }
-    this.array[index].push([key, value]);
+
+    if (!this.has(key)) {
+      this.array[index].push([key, value]);
+    }
 
     return this;
   }
@@ -33,11 +36,10 @@ export class HashMap {
 
     if (existingKeys) {
       for (const entity of existingKeys) {
-        if (entity[0] !== key) {
-          return false;
-        }
+        if (entity[0] !== key) return false;
+        return true;
       }
     }
-    return true;
+    return false;
   }
 }
