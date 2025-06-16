@@ -1,3 +1,5 @@
+import { LinkedList } from './linkedList';
+
 export class HashMap {
   constructor(loadFactor, capacity) {
     this.loadFactor = loadFactor;
@@ -18,16 +20,20 @@ export class HashMap {
 
   set(key, value) {
     const index = this.hash(key);
+    const linkedList = new LinkedList();
 
     if (!this.array[index]) {
-      this.array[index] = [];
+      //   this.array[index] = [];
+      this.array[index] = linkedList;
     }
 
-    if (!this.has(key)) {
-      this.array[index].push([key, value]);
-    } else {
-      this.replace(key, value);
-    }
+    linkedList.append(key, value);
+
+    // if (!this.has(key)) {
+    //   this.array[index].push([key, value]);
+    // } else {
+    //   this.replace(key, value);
+    // }
 
     return this;
   }
@@ -43,6 +49,20 @@ export class HashMap {
       }
     }
     return false;
+  }
+
+  remove(key) {
+    if (this.has(key)) {
+      const index = this.hash(key);
+      const existingKeys = this.array[index];
+
+      for (let i = 0; i < existingKeys.length; i++) {
+        if (existingKeys[i][0] === key) {
+          console.log(existingKeys);
+          existingKeys[i] = null;
+        }
+      }
+    }
   }
 
   replace(key, value) {
