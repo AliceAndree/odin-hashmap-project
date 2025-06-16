@@ -23,7 +23,6 @@ export class HashMap {
     const linkedList = new LinkedList();
 
     if (!this.array[index]) {
-      //   this.array[index] = [];
       this.array[index] = linkedList;
     }
 
@@ -40,14 +39,10 @@ export class HashMap {
 
   has(key) {
     const index = this.hash(key);
-    const existingKeys = this.array[index];
+    const linkedListWithKey = this.array[index];
 
-    if (existingKeys) {
-      for (const entity of existingKeys) {
-        if (entity[0] !== key) return false;
-        return true;
-      }
-    }
+    if (linkedListWithKey.contains(key)) return true;
+
     return false;
   }
 
