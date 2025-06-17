@@ -10,6 +10,7 @@ hashMap.set('Stephane', 'Fafouille');
 
 console.log(hashMap);
 console.log(hashMap.remove('Alice'));
+console.log(hashMap.remove('Stephane'));
 // console.log(hashMap.has('Lina'));
 // console.log(hashMap.hash('Luna'));
 // console.log(hashMap.hash('Stephane'));
