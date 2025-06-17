@@ -12,7 +12,7 @@ hashMap.set('Stephane', 'Fafouille');
 
 // hashMap.remove('Alice');
 // hashMap.remove('Stephane');
-
+console.log(hashMap.get('Stephane'));
 console.log(hashMap);
 console.log(hashMap.keys());
 console.log(hashMap.values());

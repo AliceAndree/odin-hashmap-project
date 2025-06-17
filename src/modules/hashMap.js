@@ -37,6 +37,20 @@ export class HashMap {
     return this;
   }
 
+  // get(key) takes one argument as a key and returns the value that is assigned to this key. If a key is not found, return null.
+  get(key) {
+    if (this.has(key)) {
+      const index = this.hash(key);
+      const linkedListWithKey = this.array[index];
+      const keyIndex = linkedListWithKey.find(key);
+      const node = linkedListWithKey.at(keyIndex);
+      const value = node.keyValuePair[1];
+
+      return value;
+    }
+    return null;
+  }
+
   // has(key) takes a key as an argument and returns true or false based on whether or not the key is in the hash map.
   has(key) {
     const index = this.hash(key);
