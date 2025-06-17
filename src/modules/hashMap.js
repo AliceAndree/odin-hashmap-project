@@ -88,6 +88,7 @@ export class HashMap {
     return length;
   }
 
+  // clear() removes all entries in the hash map.
   clear() {
     if (this.length !== 0) {
       for (let i = 0; i < this.array.length; i++) {
@@ -96,5 +97,54 @@ export class HashMap {
         }
       }
     }
+  }
+
+  // keys() returns an array containing all the keys inside the hash map.
+  keys() {
+    if (this.length !== 0) {
+      let nodesArray = this.entries();
+      let keysArray = [];
+
+      if (nodesArray) {
+        for (let i = 0; i < nodesArray.length; i++) {
+          const key = nodesArray[i][0];
+          keysArray.push(key);
+        }
+      }
+      return keysArray;
+    }
+    return null;
+  }
+
+  // values() returns an array containing all the values.
+  values() {
+    if (this.length !== 0) {
+      let nodesArray = this.entries();
+      let valuesArray = [];
+
+      if (nodesArray) {
+        for (let i = 0; i < nodesArray.length; i++) {
+          const key = nodesArray[i][1];
+          valuesArray.push(key);
+        }
+      }
+      return valuesArray;
+    }
+    return null;
+  }
+
+  // returns an array that contains each key, value pair.
+  entries() {
+    if (this.length !== 0) {
+      let nodesArray;
+
+      for (let i = 0; i < this.array.length; i++) {
+        if (this.array[i] !== null) {
+          nodesArray = this.array[i].toArray();
+        }
+      }
+      return nodesArray;
+    }
+    return null;
   }
 }

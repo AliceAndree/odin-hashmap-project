@@ -14,4 +14,7 @@ hashMap.set('Stephane', 'Fafouille');
 // hashMap.remove('Stephane');
 
 console.log(hashMap);
+console.log(hashMap.keys());
+console.log(hashMap.values());
+console.log(hashMap.entries());
 // console.log(hashMap.length());

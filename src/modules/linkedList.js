@@ -107,6 +107,18 @@ export class LinkedList {
     return `${string}${temp}`;
   }
 
+  toArray() {
+    let temp = this.head;
+    let array = [];
+
+    while (temp != null) {
+      let arrayValue = temp.keyValuePair;
+      array.push(arrayValue);
+      temp = temp.nextNode;
+    }
+    return array;
+  }
+
   insertAt(index, value) {
     let temp = this.at(index);
     let pre = this.at(index - 1);
