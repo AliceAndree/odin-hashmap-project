@@ -87,7 +87,7 @@ export class LinkedList {
     let index = 0;
 
     while (temp != null) {
-      if (temp.value === value) return index;
+      if (temp.keyValuePair[0] === value) return index;
       temp = temp.nextNode;
       index++;
     }
@@ -99,7 +99,7 @@ export class LinkedList {
     let string = ``;
 
     while (temp != null) {
-      let stringValue = temp.value;
+      let stringValue = temp.keyValuePair;
       string += `( ${stringValue} ) -> `;
       temp = temp.nextNode;
     }

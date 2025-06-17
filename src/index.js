@@ -7,9 +7,10 @@ hashMap.set('Alice', 'Thiel');
 hashMap.set('Stephane', 'Fedele');
 hashMap.set('Luna', 'Tralala');
 hashMap.set('Stephane', 'Fafouille');
-// hashMap.remove('Stephane');
 
 console.log(hashMap);
-console.log(hashMap.has('Alice'));
-console.log(hashMap.has('Lina'));
+// console.log(hashMap.has('Alice'));
+// console.log(hashMap.has('Lina'));
+// console.log(hashMap.hash('Luna'));
+// console.log(hashMap.hash('Stephane'));
 // console.log(hashMap.hash('Lina'));

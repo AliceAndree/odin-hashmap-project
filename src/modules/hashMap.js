@@ -20,19 +20,17 @@ export class HashMap {
 
   set(key, value) {
     const index = this.hash(key);
-    const linkedList = new LinkedList();
 
     if (!this.array[index]) {
+      const linkedList = new LinkedList();
       this.array[index] = linkedList;
     }
 
-    linkedList.append(key, value);
-
-    // if (!this.has(key)) {
-    //   this.array[index].push([key, value]);
-    // } else {
-    //   this.replace(key, value);
-    // }
+    if (!this.has(key)) {
+      this.array[index].append(key, value);
+    } else {
+      this.replace(key, value);
+    }
 
     return this;
   }
@@ -49,23 +47,24 @@ export class HashMap {
   remove(key) {
     if (this.has(key)) {
       const index = this.hash(key);
-      const existingKeys = this.array[index];
+      const linkedListWithKey = this.array[index];
 
-      for (let i = 0; i < existingKeys.length; i++) {
-        if (existingKeys[i][0] === key) {
-          console.log(existingKeys);
-          existingKeys[i] = null;
+      for (let i = 0; i < linkedListWithKey.length; i++) {
+        if (linkedListWithKey[i][0] === key) {
+          console.log(linkedListWithKey);
+          linkedListWithKey[i] = null;
         }
       }
     }
   }
 
   replace(key, value) {
-    const index = this.hash(key);
-    const existingKeys = this.array[index];
-
-    for (const entity of existingKeys) {
-      if (entity[0] === key) entity[1] = value;
+    if (this.has(key)) {
+      const index = this.hash(key);
+      const linkedListWithKey = this.array[index];
+      const listIndex = linkedListWithKey.find(key);
+      const node = linkedListWithKey.at(listIndex);
+      node.keyValuePair = [key, value];
     }
   }
 }
