@@ -47,14 +47,15 @@ export class HashMap {
   remove(key) {
     if (this.has(key)) {
       const index = this.hash(key);
-      const linkedListWithKey = this.array[index];
+      let linkedListWithKey = this.array[index];
+      const listIndex = linkedListWithKey.find(key);
+      linkedListWithKey.removeAt(listIndex);
 
-      for (let i = 0; i < linkedListWithKey.length; i++) {
-        if (linkedListWithKey[i][0] === key) {
-          console.log(linkedListWithKey);
-          linkedListWithKey[i] = null;
-        }
+      if (linkedListWithKey.size() === 0) {
+        this.array[index] = null;
       }
+
+      return this;
     }
   }
 

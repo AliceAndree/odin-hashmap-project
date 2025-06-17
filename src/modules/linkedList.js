@@ -123,9 +123,14 @@ export class LinkedList {
     let temp = this.at(index);
     let pre = this.at(index - 1);
 
-    if (temp) {
-      pre.nextNode = temp.nextNode;
+    if (!pre) {
+      temp.keyValuePair = null;
       this.length--;
+    } else {
+      if (temp) {
+        pre.nextNode = temp.nextNode;
+        this.length--;
+      }
     }
   }
 }

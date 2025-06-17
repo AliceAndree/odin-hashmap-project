@@ -9,7 +9,7 @@ hashMap.set('Luna', 'Tralala');
 hashMap.set('Stephane', 'Fafouille');
 
 console.log(hashMap);
-// console.log(hashMap.has('Alice'));
+console.log(hashMap.remove('Alice'));
 // console.log(hashMap.has('Lina'));
 // console.log(hashMap.hash('Luna'));
 // console.log(hashMap.hash('Stephane'));
