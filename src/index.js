@@ -8,8 +8,10 @@ hashMap.set('Stephane', 'Fedele');
 hashMap.set('Luna', 'Tralala');
 hashMap.set('Stephane', 'Fafouille');
 
+// hashMap.clear();
+
 // hashMap.remove('Alice');
 // hashMap.remove('Stephane');
 
 console.log(hashMap);
-console.log(hashMap.length());
+// console.log(hashMap.length());

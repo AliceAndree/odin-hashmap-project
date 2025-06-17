@@ -87,4 +87,14 @@ export class HashMap {
     }
     return length;
   }
+
+  clear() {
+    if (this.length !== 0) {
+      for (let i = 0; i < this.array.length; i++) {
+        if (this.array[i] !== null) {
+          this.array[i] = null;
+        }
+      }
+    }
+  }
 }
