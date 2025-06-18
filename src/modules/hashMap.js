@@ -6,7 +6,6 @@ export class HashMap {
     this.capacity = capacity;
     this.array = new Array(capacity).fill(null);
   }
-
   // hash() takes a key and produces a hash code with it.
   hash(key) {
     let hashCode = 0;
@@ -21,6 +20,8 @@ export class HashMap {
 
   // set(key, value) takes two arguments, the first is a key and the second is a value that is assigned to this key. If a key already exists, then the old value is overwritten or we can say that we update the key’s value.
   set(key, value) {
+    if (this.isFilled()) return this.grow();
+
     const index = this.hash(key);
 
     if (!this.array[index]) {
@@ -33,8 +34,6 @@ export class HashMap {
     } else {
       this.replace(key, value);
     }
-
-    return this;
   }
 
   // get(key) takes one argument as a key and returns the value that is assigned to this key. If a key is not found, return null.
@@ -56,7 +55,7 @@ export class HashMap {
     const index = this.hash(key);
     const linkedListWithKey = this.array[index];
 
-    if (linkedListWithKey.contains(key)) return true;
+    if (linkedListWithKey && linkedListWithKey.contains(key)) return true;
 
     return false;
   }
@@ -150,15 +149,57 @@ export class HashMap {
   // returns an array that contains each key, value pair.
   entries() {
     if (this.length !== 0) {
-      let nodesArray;
+      let nodesArray = [];
 
       for (let i = 0; i < this.array.length; i++) {
         if (this.array[i] !== null) {
-          nodesArray = this.array[i].toArray();
+          const nodes = this.array[i].toArray();
+
+          for (let j = 0; j < nodes.length; j++) {
+            nodesArray.push(nodes[j]);
+          }
         }
       }
       return nodesArray;
     }
     return null;
+  }
+
+  // grows the hashmap capacity if loadfactor is reached
+  grow() {
+    this.capacity = this.capacity * 2;
+    const entries = this.entries();
+    this.array = new Array(this.capacity).fill(null);
+
+    for (let i = 0; i < entries.length; i++) {
+      const index = this.hash(entries[i][0]);
+
+      if (!this.array[index]) {
+        const linkedList = new LinkedList();
+        this.array[index] = linkedList;
+      }
+
+      if (!this.has(entries[i][0])) {
+        this.array[index].append(entries[i][0], entries[i][1]);
+      } else {
+        this.replace(entries[i][0], entries[i][1]);
+      }
+    }
+    return this;
+  }
+
+  // checks if loadfactor is reached
+  isFilled() {
+    let filled = 0;
+    const growFactor = this.capacity * this.loadFactor;
+
+    for (let i = 0; i < this.array.length; i++) {
+      if (this.array[i] !== null) {
+        filled++;
+      }
+    }
+
+    if (filled >= growFactor) return true;
+    return false;
   }
 }
